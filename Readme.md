@@ -1,39 +1,24 @@
-# Archival
-This repo was archived by the Apollo Security team on 2023-05-26
+npm i -D @graphql-hive/cli 
 
+for subgraph:
+- token : "fec0a5d980999def30b468be739e5f85"
+- autoSchemaFile: join(process.cwd(), 'src/schema.gql')
+- Olusan graphql de @tag directive i silinmeli
+- npx hive schema:publish --registry.accessToken fec0a5d980999def30b468be739e5f85  --service="policy" --url="http://localhost:3010/graphql" --author "Me" --commit "register" src/schema.gql  
 
-## Apollo Federation Demo
+for supergraph:
 
-This repository is a demo of using Apollo Federation to build a single schema on top of multiple services. The microservices are located under the [`./services`](./services/) folder and the gateway that composes the overall schema is in the [`gateway.js`](./gateway.js) file.
+|| in win:
+- Invoke-WebRequest -Uri 'https://cdn.graphql-hive.com/artifacts/v1/c3c7c27f-9c30-4deb-a88b-351c64ceb5e6/sdl' -Headers @{ 'X-Hive-CDN-Key' = 'hv2ODE5MzQ1M2ItOTQwNS00Yzg1LTk1ODEtNmNlYmEwYWM5Zjk2OjM0NGIwNWY4Mzk4MmM3ZDg2MDQ3YTc2MTYzNTc2MTkwYTZmNTkw' }   
+- Invoke-WebRequest -Uri 'https://cdn.graphql-hive.com/artifacts/v1/c3c7c27f-9c30-4deb-a88b-351c64ceb5e6/supergraph' -Headers @{ 'X-Hive-CDN-Key' = 'hv2ODE5MzQ1M2ItOTQwNS00Yzg1LTk1ODEtNmNlYmEwYWM5Zjk2OjM0NGIwNWY4Mzk4MmM3ZDg2MDQ3YTc2MTYzNTc2MTkwYTZmNTkw' }
 
-### Installation
+|| CURL ile
+- curl -L -H 'X-Hive-CDN-Key:hv2ODE5MzQ1M2ItOTQwNS00Yzg1LTk1ODEtNmNlYmEwYWM5Zjk2OjM0NGIwNWY4Mzk4MmM3ZDg2MDQ3YTc2MTYzNTc2MTkwYTZmNTkw' https://cdn.graphql-hive.com/artifacts/v1/c3c7c27f-9c30-4deb-a88b-351c64ceb5e6/supergraph
+- curl -L -H 'X-Hive-CDN-Key:hv2ODE5MzQ1M2ItOTQwNS00Yzg1LTk1ODEtNmNlYmEwYWM5Zjk2OjM0NGIwNWY4Mzk4MmM3ZDg2MDQ3YTc2MTYzNTc2MTkwYTZmNTkw' https://cdn.graphql-hive.com/artifacts/v1/c3c7c27f-9c30-4deb-a88b-351c64ceb5e6/sdl
 
-To run this demo locally, pull down the repository then run the following commands:
+- supergraphSdl: createSupergraphManager({
+    endpoint: "https://cdn.graphql-hive.com/artifacts/v1/c3c7c27f-9c30-4deb-a88b-351c64ceb5e6",
+    key: "hv2ODE5MzQ1M2ItOTQwNS00Yzg1LTk1ODEtNmNlYmEwYWM5Zjk2OjM0NGIwNWY4Mzk4MmM3ZDg2MDQ3YTc2MTYzNTc2MTkwYTZmNTkw",
+    pollIntervalInMs: 15_000
+  })
 
-```sh
-npm install
-```
-
-This will install all of the dependencies for the gateway and each underlying service.
-
-```sh
-npm run start-services
-```
-
-This command will run all of the microservices at once. They can be found at http://localhost:4001, http://localhost:4002, http://localhost:4003, and http://localhost:4004.
-
-In another terminal window, run the gateway by running this command:
-
-```sh
-npm run start-gateway
-```
-
-This will start up the gateway and serve it at http://localhost:4000
-
-### What is this?
-
-This demo showcases four partial schemas running as federated microservices. Each of these schemas can be accessed on their own and form a partial shape of an overall schema. The gateway fetches the service capabilities from the running services to create an overall composed schema which can be queried. 
-
-To see the query plan when running queries against the gateway, click on the `Query Plan` tab in the bottom right hand corner of [GraphQL Playground](http://localhost:4000)
-
-To learn more about Apollo Federation, check out the [docs](https://www.apollographql.com/docs/apollo-server/federation/introduction)

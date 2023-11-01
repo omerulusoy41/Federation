@@ -1,19 +1,13 @@
 const { ApolloServer } = require("apollo-server");
 const { ApolloGateway, IntrospectAndCompose } = require("@apollo/gateway");
+const { createSupergraphManager } = require('@graphql-hive/client')
 
-const supergraphSdl = new IntrospectAndCompose({
-  // This entire subgraph list is optional when running in managed federation
-  // mode, using Apollo Studio as the source of truth.  In production,
-  // using a single source of truth to compose a schema is recommended and
-  // prevents composition failures at runtime using schema validation using
-  // real usage-based metrics.
-  subgraphs: [
-    { name: "accounts", url: "http://localhost:4001/graphql" },
-    { name: "reviews", url: "http://localhost:4002/graphql" },
-    { name: "products", url: "http://localhost:4003/graphql" },
-    { name: "inventory", url: "http://localhost:4004/graphql" },
-  ],
-});
+
+const supergraphSdl = new createSupergraphManager({
+  endpoint: "https://cdn.graphql-hive.com/artifacts/v1/c3c7c27f-9c30-4deb-a88b-351c64ceb5e6",
+  key: "hv2ODE5MzQ1M2ItOTQwNS00Yzg1LTk1ODEtNmNlYmEwYWM5Zjk2OjM0NGIwNWY4Mzk4MmM3ZDg2MDQ3YTc2MTYzNTc2MTkwYTZmNTkw",
+  pollIntervalInMs: 15_000
+})
 
 const gateway = new ApolloGateway({
   supergraphSdl,

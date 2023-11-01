@@ -11,12 +11,14 @@
     "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
+    "@graphql-hive/cli": "^0.30.2",
+    "concurrently": "latest",
     "lerna": "latest",
-    "nodemon": "latest",
-    "concurrently": "latest"
+    "nodemon": "latest"
   },
   "dependencies": {
     "@apollo/gateway": "latest",
+    "@graphql-hive/client": "^0.24.3",
     "apollo-server": "latest",
     "graphql": "latest"
   }
