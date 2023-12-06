@@ -26,7 +26,7 @@ public class FederationApplication {
 				// do whatever here
 				registry
 						.addMapping("/*")
-						.allowedOrigins("https://studio.apollographql.com","http://localhost:3000")
+						.allowedOrigins("https://studio.apollographql.com","http://localhost:4000")
 						.allowCredentials(true)
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
 						.allowedHeaders("*")
