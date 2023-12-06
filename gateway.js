@@ -8,6 +8,18 @@ const gateway = new ApolloGateway({
           name: "book",
           url: "http://localhost:8080/graphql",
         },
+        {
+          name: "accounts",
+          url: "http://localhost:4001/graphql",
+        },
+        {
+          name: "inventory",
+          url: "http://localhost:4004/graphql",
+        },
+        {
+          name: "products",
+          url: "http://localhost:4003/graphql",
+        },
       ],
 
       pollIntervalInMs: 15000, // That will automatically poll the services again in each interval
