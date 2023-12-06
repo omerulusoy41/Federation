@@ -1,0 +1,17 @@
+type Query {
+    getDefault(id: ID!): Book,
+    getAll:[Book],
+}
+
+type Mutation{
+    addBook(bookIn:BookIn!):Book!
+}
+
+type Book @key(fields: "id") {
+    id: ID!
+    name: String
+}
+
+input BookIn {
+    name:String
+}
